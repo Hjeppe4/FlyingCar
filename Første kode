@@ -4,7 +4,8 @@ from time import sleep
 robot = Robot(left=(7, 8), right=(9, 10))
 left_sensor = LineSensor(3)
 right_sensor= LineSensor(5)
-
+def moter_speed():
+    while True:
         left_detect  = int(left_sensor.value)
         right_detect = int(right_sensor.value)
     if left_detect == 0 and right_detect == 0:
