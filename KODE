@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 from time import sleep
-
+GPIO.setwarnings(False)
 # Pin Setup
 IN1 = 23  # Replace with the GPIO pin you connected to IN1
 IN2 = 16  # Replace with the GPIO pin you connected to IN2
