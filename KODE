@@ -37,8 +37,8 @@ import RPi.GPIO as GPIO
 import time
 
 # Define GPIO pins for motor control
-left_motor_pin = 23
-right_motor_pin = 24
+left_motor_pin = 16
+right_motor_pin = 13
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(left_motor_pin, GPIO.OUT)
