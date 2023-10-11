@@ -114,14 +114,14 @@ GPIO.setup(IN3, GPIO.OUT)
 GPIO.setup(IN4, GPIO.OUT)
 
 # Function to control motor direction
-def set_motor_direction(left_dir, right_dir):
-    GPIO.output(IN1, left_dir)
-    GPIO.output(IN2, not left_dir)
-    GPIO.output(IN3, right_dir)
-    GPIO.output(IN4, not right_dir)
+def set_motor_direction(left_dir1, right_dir2):
+    GPIO.output(IN1, left_dir1)
+    GPIO.output(IN2, not left_dir1)
+    GPIO.output(IN3, right_dir2)
+    GPIO.output(IN4, not right_dir2)
 
 # Function to set motor speed
-def set_motor_speed(left_speed, right_speed):
+def set_motor_speed(left_speed1, right_speed2):
     left_pwm = GPIO.PWM(IN2, 1000)  # 1000 Hz frequency
     right_pwm = GPIO.PWM(IN4, 1000)  # 1000 Hz frequency
     left_pwm.start(left_speed)
@@ -130,7 +130,7 @@ def set_motor_speed(left_speed, right_speed):
 # Initial motor direction and speed
 set_motor_direction(1, 1)  # Set both motors to forward
 set_motor_speed(speed, speed)  # Set the initial speed
-
+'''
 try:
     while True:
         # Your line sensor logic here
@@ -156,3 +156,4 @@ try:
 except KeyboardInterrupt:
     set_motor_speed(0, 0)  # Stop both motors
     GPIO.cleanup()
+'''
