@@ -8,11 +8,11 @@ def moter_speed():
     while True:
         left_detect  = int(left_sensor.value)
         right_detect = int(right_sensor.value)
-    if left_detect == 0 and right_detect == 0:
+        if left_detect == 0 and right_detect == 0:
         print("kør lige ud")
-    if left_detect == 1 and right_detect == 0:
+        if left_detect == 1 and right_detect == 0:
         print("drej venstre")
-     if left_detect == 0 and right_detect == 1:
+         if left_detect == 0 and right_detect == 1:
         print("drej højre")
-     if left_detect == 1 and right_detect == 1:
+        if left_detect == 1 and right_detect == 1:
         print("VI CRASHEDE D:")
