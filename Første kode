@@ -1,4 +1,4 @@
-import RPi.GPIO as GPIO
+'''import RPi.GPIO as GPIO
 
 
 
@@ -36,6 +36,47 @@ def motor_speed():
             if left_detect == 0 and right_detect == 0:
                 print("Collision!")
     
+    except KeyboardInterrupt:
+        GPIO.cleanup()
+motor_speed()
+'''
+import RPi.GPIO as GPIO
+
+# Pin Setup
+left1_motor_pins = (35, 16)
+left2_motor_pins = (33, 18)
+right1_motor_pins = (32, 11)
+right2_motor_pins = (12, 13)
+
+left_sensor_pin = 19
+right_sensor_pin = 21
+
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(left_sensor_pin, GPIO.IN)
+GPIO.setup(right_sensor_pin, GPIO.IN)
+GPIO.setup(left1_motor_pins + left2_motor_pins + right1_motor_pins + right2_motor_pins, GPIO.OUT)
+
+speed = 0.65
+left1_mot = 1
+right1_mot = 1
+left2_mot = 1
+right2_mot = 1
+
+def motor_speed():
+    try:
+        while True:
+            left_detect = GPIO.input(left_sensor_pin)
+            right_detect = GPIO.input(right_sensor_pin)
+
+            if left_detect == 1 and right_detect == 1:
+                print("Go straight")
+            if left_detect == 1 and right_detect == 0:
+                print("Turn left")
+            if left_detect == 0 and right_detect == 1:
+                print("Turn right")
+            if left_detect == 0 and right_detect == 0:
+                print("Collision!")
+
     except KeyboardInterrupt:
         GPIO.cleanup()
 
