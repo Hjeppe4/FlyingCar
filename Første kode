@@ -1,16 +1,26 @@
+import RPi.GPIO as GPIO
 
+# Pin Setup
+left_sensor_pin = 3
+right_sensor_pin = 5
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(left_sensor_pin, GPIO.IN)
+GPIO.setup(right_sensor_pin, GPIO.IN)
 
-left_sensor = LineSensor(3)
-right_sensor= LineSensor(5)
-def moter_speed():
-    while True:
-        left_detect  = int(left_sensor.value)
-        right_detect = int(right_sensor.value)
-        if left_detect == 0 and right_detect == 0:
-            print("kør lige ud")
-        if left_detect == 1 and right_detect == 0:
-            print("drej venstre")
-        if left_detect == 0 and right_detect == 1:
-            print("drej højre")
-        if left_detect == 1 and right_detect == 1:
-            print("VI CRASHEDE D:")
+def motor_speed():
+    try:
+        while True:
+            left_detect = GPIO.input(left_sensor_pin)
+            right_detect = GPIO.input(right_sensor_pin)
+            if left_detect == 0 and right_detect == 0:
+                print("Go straight")
+            if left_detect == 1 and right_detect == 0:
+                print("Turn left")
+            if left_detect == 0 and right_detect == 1:
+                print("Turn right")
+            if left_detect == 1 and right_detect == 1:
+                print("Collision!")
+    except KeyboardInterrupt:
+        GPIO.cleanup()
+
+motor_speed()
