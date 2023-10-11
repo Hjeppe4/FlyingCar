@@ -43,10 +43,10 @@ motor_speed()
 import RPi.GPIO as GPIO
 
 # Pin Setup
-left1_motor_pins = (16, 35)
-left2_motor_pins = (18, 33)
-right1_motor_pins = (11, 32)
-right2_motor_pins = (13, 12)
+left1_motor_pins = (35, 16)
+left2_motor_pins = (33, 18)
+right1_motor_pins = (32, 11)
+right2_motor_pins = (12, 13)
 
 left_sensor_pin = 19
 right_sensor_pin = 21
@@ -70,10 +70,22 @@ def motor_speed():
 
             if left_detect == 1 and right_detect == 1:
                 print("Go straight")
+                left1_mot = 1
+                left2_mot = 1
+                right1_mot = 1
+                right2_mot = 1
             if left_detect == 1 and right_detect == 0:
                 print("Turn left")
+                left1_mot = 0
+                left2_mot = 0
+                right1_mot = 1
+                right2_mot = 0
             if left_detect == 0 and right_detect == 1:
                 print("Turn right")
+                left1_mot = 1
+                left2_mot = 0
+                right1_mot = 0
+                right2_mot = 0
             if left_detect == 0 and right_detect == 0:
                 print("Collision!")
 
