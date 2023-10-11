@@ -33,6 +33,7 @@ def set_motor_speed(left_speed1, right_speed2):
 set_motor_direction(1, 1)  # Set both motors to forward
 set_motor_speed(speed, speed)  # Set the initial speed
 '''
+print("test 2")
 import RPi.GPIO as GPIO
 GPIO.setwarnings(False)
 GPIO.cleanup()
