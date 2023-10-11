@@ -1,6 +1,5 @@
-import RPi.GPIO as GPIO
+'''import RPi.GPIO as GPIO
 from time import sleep
-GPIO.setwarnings(False)
 # Pin Setup
 IN1 = 23  # Replace with the GPIO pin you connected to IN1
 IN2 = 16  # Replace with the GPIO pin you connected to IN2
@@ -33,3 +32,65 @@ def set_motor_speed(left_speed1, right_speed2):
 # Initial motor direction and speed
 set_motor_direction(1, 1)  # Set both motors to forward
 set_motor_speed(speed, speed)  # Set the initial speed
+'''
+import RPi.GPIO as GPIO
+from time import sleep
+
+# Pin Setup
+IN1 = 23  # Replace with the GPIO pin you connected to IN1
+IN2 = 16  # Replace with the GPIO pin you connected to IN2
+IN3 = 24  # Replace with the GPIO pin you connected to IN3
+IN4 = 13  # Replace with the GPIO pin you connected to IN4
+
+speed = 50  # Set the initial speed (0-100)
+
+# Initialize GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(IN1, GPIO.OUT)
+GPIO.setup(IN2, GPIO.OUT)
+GPIO.setup(IN3, GPIO.OUT)
+GPIO.setup(IN4, GPIO.OUT)
+
+# Function to control motor direction
+def set_motor_direction(left_dir, right_dir):
+    GPIO.output(IN1, left_dir)
+    GPIO.output(IN2, not left_dir)
+    GPIO.output(IN3, right_dir)
+    GPIO.output(IN4, not right_dir)
+
+# Function to set motor speed
+def set_motor_speed(left_speed, right_speed):
+    left_pwm = GPIO.PWM(IN2, 1000)  # 1000 Hz frequency
+    right_pwm = GPIO.PWM(IN4, 1000)  # 1000 Hz frequency
+    left_pwm.start(left_speed)
+    right_pwm.start(right_speed)
+
+# Initial motor direction and speed
+set_motor_direction(1, 1)  # Set both motors to forward
+set_motor_speed(speed, speed)  # Set the initial speed
+
+try:
+    while True:
+        # Your line sensor logic here
+        left_detect = 1
+        right_detect = 1
+        if left_detect == 1 and right_detect == 1:
+            print("Go straight")
+            set_motor_direction(1, 1)  # Both motors forward
+            set_motor_speed(50, 50)
+        elif left_detect == 1 and right_detect == 0:
+            print("Turn left")
+            set_motor_direction(0, 1)  # Left motor backward, right motor forward
+            set_motor_speed(50, 50)
+        elif left_detect == 0 and right_detect == 1:
+            print("Turn right")
+            set_motor_direction(1, 0)  # Left motor forward, right motor backward
+            set_motor_speed(50, 50)
+        else:
+            print("Collision")
+            set_motor_speed(0, 0)  # Stop both motors
+        sleep(0.1)
+
+except KeyboardInterrupt:
+    set_motor_speed(0, 0)  # Stop both motors
+    GPIO.cleanup()
