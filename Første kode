@@ -24,4 +24,4 @@ def motor_speed():
         GPIO.cleanup()
 
 motor_speed()
-Time sleep(1)
+Time Sleep(1)
