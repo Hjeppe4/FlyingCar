@@ -34,9 +34,10 @@ set_motor_direction(1, 1)  # Set both motors to forward
 set_motor_speed(speed, speed)  # Set the initial speed
 '''
 import RPi.GPIO as GPIO
+GPIO.setwarnings(False)
 GPIO.cleanup()
 
-import RPi.GPIO as GPIO
+
 import time
 
 # Define GPIO pins for motor control
