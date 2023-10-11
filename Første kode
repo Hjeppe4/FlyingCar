@@ -12,7 +12,7 @@ def moter_speed():
             print("kør lige ud")
         if left_detect == 1 and right_detect == 0:
             print("drej venstre")
-         if left_detect == 0 and right_detect == 1:
+        if left_detect == 0 and right_detect == 1:
             print("drej højre")
         if left_detect == 1 and right_detect == 1:
             print("VI CRASHEDE D:")
