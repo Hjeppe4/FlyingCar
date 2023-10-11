@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 # Pin Setup
-left_sensor_pin = 19
+left_sensor_pin = 17
 right_sensor_pin = 21
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(left_sensor_pin, GPIO.IN)
