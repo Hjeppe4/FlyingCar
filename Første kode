@@ -1,8 +1,8 @@
 import RPi.GPIO as GPIO
 
 # Pin Setup
-left_sensor_pin = 3
-right_sensor_pin = 5
+left_sensor_pin = 8
+right_sensor_pin = 7
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(left_sensor_pin, GPIO.IN)
 GPIO.setup(right_sensor_pin, GPIO.IN)
