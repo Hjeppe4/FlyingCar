@@ -1,12 +1,27 @@
 import RPi.GPIO as GPIO
-import time
+import time import sleep
+
+
 # Pin Setup
+left1_moter_pins = (35,16)
+left2_moter_pins = (33,18)
+right1_moter_pins = (32,11)
+right2_moter_pins = (12,13)
+
 left_sensor_pin = 19
 right_sensor_pin = 21
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(left_sensor_pin, GPIO.IN)
 GPIO.setup(right_sensor_pin, GPIO.IN)
-
+GPIO.setup(left1_motor_pins, GPIO.OUT)
+GPIO.setup(right1_motor_pins, GPIO.OUT)
+GPIO.setup(left2_motor_pins, GPIO.OUT)
+GPIO.setup(right2_motor_pins, GPIO.OUT)
+speed = 0.65
+left1_mot = 1
+right1_mot = 1
+left2_mot = 1
+right2_mot = 1
 def motor_speed():
     try:
         while True:
@@ -20,6 +35,7 @@ def motor_speed():
                 print("Turn right")
             if left_detect == 0 and right_detect == 0:
                 print("Collision!")
+    
     except KeyboardInterrupt:
         GPIO.cleanup()
 
