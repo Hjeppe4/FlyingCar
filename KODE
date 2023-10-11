@@ -27,8 +27,8 @@ def set_motor_direction(left_dir1, right_dir2):
 def set_motor_speed(left_speed1, right_speed2):
     left_pwm = GPIO.PWM(IN2, 1000)  # 1000 Hz frequency
     right_pwm = GPIO.PWM(IN4, 1000)  # 1000 Hz frequency
-    left_pwm.start(left_speed)
-    right_pwm.start(right_speed)
+    left_pwm.start(left_speed1)
+    right_pwm.start(right_speed2)
 
 # Initial motor direction and speed
 set_motor_direction(1, 1)  # Set both motors to forward
