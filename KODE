@@ -36,9 +36,9 @@ set_motor_speed(speed, speed)  # Set the initial speed
 print("test 2")
 import RPi.GPIO as GPIO
 print("test 2")
-GPIO.setwarnings(False)
+
 print("test 2")
-GPIO.cleanup()
+
 print("test 2")
 
 
