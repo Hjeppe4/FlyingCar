@@ -2,10 +2,10 @@ import RPi.GPIO as GPIO
 from time import sleep
 
 # Pin Setup
-IN1 = 16  # Replace with the GPIO pin you connected to IN1
-IN2 = 35  # Replace with the GPIO pin you connected to IN2
-IN3 = 18  # Replace with the GPIO pin you connected to IN3
-IN4 = 33  # Replace with the GPIO pin you connected to IN4
+IN1 = 23  # Replace with the GPIO pin you connected to IN1
+IN2 = 16  # Replace with the GPIO pin you connected to IN2
+IN3 = 24  # Replace with the GPIO pin you connected to IN3
+IN4 = 13  # Replace with the GPIO pin you connected to IN4
 
 speed = 50  # Set the initial speed (0-100)
 
