@@ -42,6 +42,9 @@ IN2 = 16  # Replace with the GPIO pin you connected to IN2
 IN3 = 24  # Replace with the GPIO pin you connected to IN3
 IN4 = 13  # Replace with the GPIO pin you connected to IN4
 
+left_sensor_pin = 19
+right_sensor_pin = 21
+
 speed = 50  # Set the initial speed (0-100)
 
 # Initialize GPIO
@@ -72,8 +75,8 @@ set_motor_speed(speed, speed)  # Set the initial speed
 try:
     while True:
         # Your line sensor logic here
-        left_detect = 1
-        right_detect = 1
+        left_detect = GPIO.input(left_sensor_pin)
+        right_detect = GPIO.input(right_sensor_pin)
         if left_detect == 1 and right_detect == 1:
             print("Go straight")
             set_motor_direction(1, 1)  # Both motors forward
