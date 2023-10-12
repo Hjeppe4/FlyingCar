@@ -126,7 +126,7 @@ try:
         print(right_detect)
         if left_detect == 1 and right_detect == 1:
             print("Go straight")
-            forward()
+            backward()
             p.ChangeDutyCycle(6)
             p2.ChangeDutyCycle(12) 
         elif left_detect == 1 and right_detect == 0:
