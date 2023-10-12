@@ -36,7 +36,7 @@ set_motor_speed(speed, speed)  # Set the initial speed
 print("test 2")
 import RPi.GPIO as GPIO
 print("test 2")
-import wiringpi2 as wiringpi
+import wiringpi as wiringpi
 
 print("test 2")
 wiringpi.wiringPiSetupGpio()
