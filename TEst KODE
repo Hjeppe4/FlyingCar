@@ -133,7 +133,8 @@ try:
         sleep(0.1)
 except KeyboardInterrupt:
     pass
-
+p.ChangeDutyCycle(10)
+p2.ChangeDutyCycle(7)
 # Clean up GPIO on program exit
 GPIO.cleanup()
 wiringpi.softPwmWrite(LEFT_MOTOR_PWM, 0)
