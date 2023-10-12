@@ -113,10 +113,11 @@ try:
     while True:
         if run_once == 0:
             p.ChangeDutyCycle(6)
-            sleep(1)                 # Wait 1 second
-            p.ChangeDutyCycle(10) 
             GPIO.output(Lys1, GPIO.HIGH)
             GPIO.output(Lys2, GPIO.HIGH)
+            sleep(1)                 # Wait 1 second
+            p.ChangeDutyCycle(10) 
+            
             run_once = 1
         
         left_detect = int (GPIO.input(LineFollowerV))
