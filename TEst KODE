@@ -57,7 +57,7 @@ wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, 0)
 
 
 print("test 4")
-def forward(speed=50):
+def forward(speed=65):
     GPIO.output(LEFT_MOTOR_IN1, GPIO.LOW)
     GPIO.output(LEFT_MOTOR_IN2, GPIO.LOW)
     GPIO.output(RIGHT_MOTOR_IN1, GPIO.LOW)
@@ -67,7 +67,7 @@ def forward(speed=50):
     wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, speed)
     wiringpi.softPwmWrite(LEFT_MOTOR_PWM,speed)
 print("test 5")
-def backward(speed=50):
+def backward(speed=65):
     GPIO.output(LEFT_MOTOR_IN1, GPIO.LOW)
     GPIO.output(LEFT_MOTOR_IN2, GPIO.HIGH)
     GPIO.output(RIGHT_MOTOR_IN1, GPIO.LOW)
@@ -77,7 +77,7 @@ def backward(speed=50):
     wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, 0)
     wiringpi.softPwmWrite(LEFT_MOTOR_PWM, 0)
 print("test 6")
-def turn_left(speed=50):
+def turn_left(speed=65):
     GPIO.output(LEFT_MOTOR_IN1, GPIO.LOW)
     GPIO.output(LEFT_MOTOR_IN2, GPIO.HIGH)
     GPIO.output(RIGHT_MOTOR_IN1, GPIO.HIGH)
@@ -87,7 +87,7 @@ def turn_left(speed=50):
     wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, speed)
     wiringpi.softPwmWrite(LEFT_MOTOR_PWM,speed)
 print("test 7")
-def turn_right(speed=50):
+def turn_right(speed=65):
     GPIO.output(LEFT_MOTOR_IN1, GPIO.HIGH)
     GPIO.output(LEFT_MOTOR_IN2, GPIO.LOW)
     GPIO.output(RIGHT_MOTOR_IN1, GPIO.LOW)
