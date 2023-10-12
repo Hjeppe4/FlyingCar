@@ -125,7 +125,9 @@ GPIO.setup(hbagpwm, GPIO.OUT)
 #venstre for dir1 = gpio23, board 16. pwm1 = gpio19 borad 35
 #venstre bag dir2 = gpio24, board 18. pwm2 = gpio13 board 33
 #højre for dir2 = gpio27, board 13. pwm2 = gpio18 board 12
-#højre bag dir1= gpio17, board 11. pwm1 =gpio12 board 32
+#højre bag dir1 = gpio17, board 11. pwm1 =gpio12 board 32
+#line venstre = gpio 10
+#line højre = gpio 9
 
 # Function to control motor direction
 def set_motor_direction(left_dir1, right_dir2):
