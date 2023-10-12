@@ -1,19 +1,30 @@
 import RPi.GPIO as GPIO
-import wiringpi as wiringpi
 import time
-wiringpi.wiringPiSetupGpio()
 
-light1 = 14
-light2 = 15
+servoPIN = 17
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(servoPIN, GPIO.OUT)
 
-wiringpi.softPwmCreate(light1, 0, 100) 
-wiringpi.softPwmCreate(light2, 0, 100)
-print("test")
-
-wiringpi.softPwmWrite(light1, 100)
-wiringpi.softPwmWrite(light2, 100)
-print("test  2")
-time.sleep(3)
-wiringpi.softPwmWrite(light1, 0)
-wiringpi.softPwmWrite(light2, 0)
-print ("test 3")
+p = GPIO.PWM(servoPIN, 50) # GPIO 17 for PWM with 50Hz
+p.start(2.5) # Initialization
+try:
+  while True:
+    p.ChangeDutyCycle(5)
+    time.sleep(0.5)
+    p.ChangeDutyCycle(7.5)
+    time.sleep(0.5)
+    p.ChangeDutyCycle(10)
+    time.sleep(0.5)
+    p.ChangeDutyCycle(12.5)
+    time.sleep(0.5)
+    p.ChangeDutyCycle(10)
+    time.sleep(0.5)
+    p.ChangeDutyCycle(7.5)
+    time.sleep(0.5)
+    p.ChangeDutyCycle(5)
+    time.sleep(0.5)
+    p.ChangeDutyCycle(2.5)
+    time.sleep(0.5)
+except KeyboardInterrupt:
+  p.stop()
+  GPIO.cleanup()
