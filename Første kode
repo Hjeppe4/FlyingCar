@@ -99,31 +99,45 @@ import RPi.GPIO as GPIO
 from time import sleep
 
 # Pin Setup
-IN1 = 16  # Replace with the GPIO pin you connected to IN1
-IN2 = 35  # Replace with the GPIO pin you connected to IN2
-IN3 = 18  # Replace with the GPIO pin you connected to IN3
-IN4 = 33  # Replace with the GPIO pin you connected to IN4
+vfor = 16  
+vforpwm = 35  
+vbag = 18  
+vbagpwm = 33 
+hfor = 13
+hforpwm = 12 
+hbag = 11
+hbagpwm = 32
+
 
 speed = 50  # Set the initial speed (0-100)
 
 # Initialize GPIO
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(IN1, GPIO.OUT) 
-GPIO.setup(IN2, GPIO.OUT)
-GPIO.setup(IN3, GPIO.OUT)
-GPIO.setup(IN4, GPIO.OUT)
+GPIO.setup(vfor, GPIO.OUT) 
+GPIO.setup(vforpwm, GPIO.OUT)
+GPIO.setup(vbag, GPIO.OUT)
+GPIO.setup(vbagpwm, GPIO.OUT)
+GPIO.setup(hfor, GPIO.OUT) 
+GPIO.setup(hforpwm, GPIO.OUT)
+GPIO.setup(hbag, GPIO.OUT)
+GPIO.setup(hbagpwm, GPIO.OUT)
+
+#venstre for dir1 = gpio23, board 16. pwm1 = gpio19 borad 35
+#venstre bag dir2 = gpio24, board 18. pwm2 = gpio13 board 33
+#højre for dir2 = gpio27, board 13. pwm2 = gpio18 board 12
+#højre bag dir1= gpio17, board 11. pwm1 =gpio12 board 32
 
 # Function to control motor direction
 def set_motor_direction(left_dir1, right_dir2):
-    GPIO.output(IN1, left_dir1)
-    GPIO.output(IN2, not left_dir1)
-    GPIO.output(IN3, right_dir2)
-    GPIO.output(IN4, not right_dir2)
+    GPIO.output(vfor, left_dir1)
+    GPIO.output(vforpwm, not left_dir1)
+    GPIO.output(vbag, right_dir2)
+    GPIO.output(vbagpwm, not right_dir2)
 
 # Function to set motor speed
 def set_motor_speed(left_speed1, right_speed2):
-    left_pwm = GPIO.PWM(IN2, 1000)  # 1000 Hz frequency
-    right_pwm = GPIO.PWM(IN4, 1000)  # 1000 Hz frequency
+    left_pwm = GPIO.PWM(vforpwm, 1000)  # 1000 Hz frequency
+    right_pwm = GPIO.PWM(vbagpwm, 1000)  # 1000 Hz frequency
     left_pwm.start(left_speed)
     right_pwm.start(right_speed)
 
