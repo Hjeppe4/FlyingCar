@@ -8,7 +8,7 @@ wiringpi.wiringPiSetupGpio()
 
 print("test 2")
 
-
+from time import sleep
 import time
 
 print("test 1")# Define GPIO pins for motor control
