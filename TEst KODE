@@ -110,7 +110,7 @@ try:
             p.ChangeDutyCycle(6)
             sleep(1)                 # Wait 1 second
             p.ChangeDutyCycle(10) 
-            run_once = 1:
+            run_once = 1
         
         left_detect = int (GPIO.input(LineFollowerV))
         right_detect = int (GPIO.input(LineFollowerH))
