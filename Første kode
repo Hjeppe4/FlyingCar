@@ -97,7 +97,9 @@ motor_speed()
 '''
 import RPi.GPIO as GPIO
 from time import sleep
-
+import wiringpi as wiringpi
+import time 
+wiringpi.wiringPiSetupGpio()
 # Pin Setup
 vfor = 16  
 vforpwm = 35  
@@ -107,67 +109,120 @@ hfor = 13
 hforpwm = 12 
 hbag = 11
 hbagpwm = 32
+LineFollowerV = 10
+LineFollowerH = 9
 
 
-speed = 50  # Set the initial speed (0-100)
+
 
 # Initialize GPIO
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(vfor, GPIO.OUT) 
-GPIO.setup(vforpwm, GPIO.OUT)
+wiringpi.softPwmCreate(vforpwm, 0, 100) 
 GPIO.setup(vbag, GPIO.OUT)
 GPIO.setup(vbagpwm, GPIO.OUT)
 GPIO.setup(hfor, GPIO.OUT) 
-GPIO.setup(hforpwm, GPIO.OUT)
+wiringpi.softPwmCreate(hforpwm, 0, 100) 
 GPIO.setup(hbag, GPIO.OUT)
 GPIO.setup(hbagpwm, GPIO.OUT)
+
 
 #venstre for dir1 = gpio23, board 16. pwm1 = gpio19 borad 35
 #venstre bag dir2 = gpio24, board 18. pwm2 = gpio13 board 33
 #højre for dir2 = gpio27, board 13. pwm2 = gpio18 board 12
 #højre bag dir1= gpio17, board 11. pwm1 =gpio12 board 32
 
-# Function to control motor direction
-def set_motor_direction(left_dir1, right_dir2):
-    GPIO.output(vfor, left_dir1)
-    GPIO.output(vforpwm, not left_dir1)
-    GPIO.output(vbag, right_dir2)
-    GPIO.output(vbagpwm, not right_dir2)
 
 # Function to set motor speed
-def set_motor_speed(left_speed1, right_speed2):
-    left_pwm = GPIO.PWM(vforpwm, 1000)  # 1000 Hz frequency
-    right_pwm = GPIO.PWM(vbagpwm, 1000)  # 1000 Hz frequency
-    left_pwm.start(left_speed)
-    right_pwm.start(right_speed)
+wiringpi.softPwmWrite(hforpwm,0)
+right_pwm = GPIO.PWM(hbagpwm, 100)
+left_pwm2 = GPIO.PWM(vbagpwm, 100)
+wiringpi.softPwmWrite(hforpwm, 0)
+right_pwm.start(0)
+left_pwm2.start(0)
 
-# Initial motor direction and speed
-set_motor_direction(1, 1)  # Set both motors to forward
-set_motor_speed(speed, speed)  # Set the initial speed
-'''
+print("test 4")
+def forward(speed=50):
+    GPIO.output(LEFT_MOTOR_IN1, GPIO.LOW)
+    GPIO.output(LEFT_MOTOR_IN2, GPIO.HIGH)
+    GPIO.output(RIGHT_MOTOR_IN1, GPIO.LOW)
+    GPIO.output(RIGHT_MOTOR_IN2, GPIO.HIGH)
+    left_pwm2.ChangeDutyCycle(speed)
+    right_pwm.ChangeDutyCycle(speed)
+    left_pwm2.ChangeDutyCycle(speed)
+    wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, speed)
+    wiringpi.softPwmWrite(LEFT_MOTOR_PWM,speed)
+print("test 5")
+def backward(speed=50):
+    GPIO.output(LEFT_MOTOR_IN1, GPIO.LOW)
+    GPIO.output(LEFT_MOTOR_IN2, GPIO.HIGH)
+    GPIO.output(RIGHT_MOTOR_IN1, GPIO.LOW)
+    GPIO.output(RIGHT_MOTOR_IN2, GPIO.HIGH)
+    wiringpi.softPwmWrite(LEFT_MOTOR_PWM,speed)
+    wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, speed)
+    left_pwm2.ChangeDutyCycle(speed)
+    right_pwm.ChangeDutyCycle(speed)
+    left_pwm2.ChangeDutyCycle(speed)
+    right_pwm.ChangeDutyCycle(speed)
+print("test 6")
+def turn_left(speed=50):
+    GPIO.output(LEFT_MOTOR_IN1, GPIO.LOW)
+    GPIO.output(LEFT_MOTOR_IN2, GPIO.HIGH)
+    GPIO.output(RIGHT_MOTOR_IN1, GPIO.HIGH)
+    GPIO.output(RIGHT_MOTOR_IN2, GPIO.LOW)
+    left_pwm2.ChangeDutyCycle(speed)
+    right_pwm.ChangeDutyCycle(speed)
+    left_pwm2.ChangeDutyCycle(speed)
+    right_pwm.ChangeDutyCycle(speed)
+    wiringpi.softPwmWrite(LEFT_MOTOR_PWM,speed)
+    wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, speed)
+print("test 7")
+def turn_right(speed=50):
+    GPIO.output(LEFT_MOTOR_IN1, GPIO.HIGH)
+    GPIO.output(LEFT_MOTOR_IN2, GPIO.LOW)
+    GPIO.output(RIGHT_MOTOR_IN1, GPIO.LOW)
+    GPIO.output(RIGHT_MOTOR_IN2, GPIO.HIGH)
+    left_pwm2.ChangeDutyCycle(speed)
+    right_pwm.ChangeDutyCycle(speed)
+    left_pwm2.ChangeDutyCycle(speed)
+    right_pwm.ChangeDutyCycle(speed)
+    wiringpi.softPwmWrite(LEFT_MOTOR_PWM,speed)
+    wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, speed)
+print("test 8")
+def stop():
+    left_pwm2.ChangeDutyCycle(0)
+    right_pwm.ChangeDutyCycle(0)
+    left_pwm2.ChangeDutyCycle(0)
+    right_pwm.ChangeDutyCycle(0)
+    wiringpi.softPwmWrite(LEFT_MOTOR_PWM, 0)
+    wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, 0)
+print("test 9")
+# Example usage
 try:
-    while True:
-        # Your line sensor logic here
-        left_detect = 1
-        right_detect = 1
-        if left_detect == 1 and right_detect == 1:
-            print("Go straight")
-            set_motor_direction(1, 1)  # Both motors forward
-            set_motor_speed(speed, speed)
-        elif left_detect == 1 and right_detect == 0:
-            print("Turn left")
-            set_motor_direction(0, 1)  # Left motor backward, right motor forward
-            set_motor_speed(speed, speed)
-        elif left_detect == 0 and right_detect == 1:
-            print("Turn right")
-            set_motor_direction(1, 0)  # Left motor forward, right motor backward
-            set_motor_speed(speed, speed)
-        else:
-            print("Collision")
-            set_motor_speed(0, 0)  # Stop both motors
-        sleep(0.1)
-
+    print("test 1")
+    forward(60)
+    time.sleep(2)
+    stop()
+    time.sleep(1)
+    print("test 2")
+    backward(50)
+    time.sleep(2)
+    stop()
+    time.sleep(1)
+    print("test 3")
+    turn_left(40)
+    time.sleep(1)
+    stop()
+    time.sleep(1)
+    print("test 4")
+    turn_right(40)
+    time.sleep(1)
+    stop()
 except KeyboardInterrupt:
-    set_motor_speed(0, 0)  # Stop both motors
-    GPIO.cleanup()
-'''
+    pass
+
+# Clean up GPIO on program exit
+GPIO.cleanup()
+wiringpi.softPwmWrite(LEFT_MOTOR_PWM, 0)
+wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, 0)
+

@@ -100,25 +100,23 @@ def stop():
 print("test 9")
 # Example usage
 try:
-    print("test 1")
-    forward(60)
-    time.sleep(2)
-    stop()
-    time.sleep(1)
-    print("test 2")
-    backward(50)
-    time.sleep(2)
-    stop()
-    time.sleep(1)
-    print("test 3")
-    turn_left(40)
-    time.sleep(1)
-    stop()
-    time.sleep(1)
-    print("test 4")
-    turn_right(40)
-    time.sleep(1)
-    stop()
+    while True:
+        # Your line sensor logic here
+        left_detect = 1
+        right_detect = 1
+        if left_detect == 1 and right_detect == 1:
+            print("Go straight")
+            forward()
+        elif left_detect == 1 and right_detect == 0:
+            print("Turn left")
+            turn_left()
+        elif left_detect == 0 and right_detect == 1:
+            print("Turn right")
+            turn_right()
+        else:
+            print("Collision")
+            stop()
+        sleep(0.1)
 except KeyboardInterrupt:
     pass
 
