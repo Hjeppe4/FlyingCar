@@ -10,7 +10,7 @@ print("test 2")
 
 from time import sleep
 import time
-
+GPIO.setmode(GPIO.BCM)
 print("test 1")# Define GPIO pins for motor control
 LEFT_MOTOR_PWM = 19
 LEFT_MOTOR_IN1 = 23
@@ -30,7 +30,7 @@ p.start(10)               # Starts running PWM on the pin and sets it to 0
 p2.start(7) 
 print("test 2")
 # Set GPIO mode and configure pins
-GPIO.setmode(GPIO.BCM)
+
 wiringpi.softPwmCreate(LEFT_MOTOR_PWM, 0, 100) 
 wiringpi.softPwmCreate(RIGHT_MOTOR_PWM2, 0, 100) 
 # GPIO.setup(LEFT_MOTOR_PWM, GPIO.OUT) 
