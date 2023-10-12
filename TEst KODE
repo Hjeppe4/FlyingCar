@@ -106,8 +106,8 @@ print("test 9")
 try:
     while True:
         # Your line sensor logic here
-        left_detect = int(LineFollowerV)
-        right_detect = int(LineFollowerH)
+        left_detect = int (GPIO.input(LineFollowerV))
+        right_detect = int (GPIO.input(LineFollowerH))
         print(left_detect)
         print(right_detect)
         if left_detect == 1 and right_detect == 1:
