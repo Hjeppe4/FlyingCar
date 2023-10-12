@@ -27,7 +27,8 @@ p = GPIO.PWM(12, 50)
 GPIO.setup(13,GPIO.OUT)  # Sets up pin 11 to an output (instead of an input)
 p2 = GPIO.PWM(13, 50)   # Sets up pin 11 as a PWM pin
 p.start(10)               # Starts running PWM on the pin and sets it to 0
-p2.start(7) 
+p2.start(7)
+time.sleep(1) 
 print("test 2")
 # Set GPIO mode and configure pins
 
