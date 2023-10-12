@@ -21,7 +21,13 @@ RIGHT_MOTOR_IN1 = 17
 RIGHT_MOTOR_IN2 = 27
 RIGHT_MOTOR_PWM2 = 18
 LineFollowerV = 10
-LineFollowerH = 9   
+LineFollowerH = 9  
+GPIO.setup(12,GPIO.OUT)  # Sets up pin 11 to an output (instead of an input)
+p = GPIO.PWM(12, 50)  
+GPIO.setup(13,GPIO.OUT)  # Sets up pin 11 to an output (instead of an input)
+p2 = GPIO.PWM(13, 50)   # Sets up pin 11 as a PWM pin
+p.start(0)               # Starts running PWM on the pin and sets it to 0
+p2.start(0) 
 print("test 2")
 # Set GPIO mode and configure pins
 GPIO.setmode(GPIO.BCM)
@@ -99,7 +105,7 @@ print("test 9")
 # Example usage
 try:
     while True:
-        # Your line sensor logic here
+        p.ChangeDutyCycle(10)
         left_detect = int (GPIO.input(LineFollowerV))
         right_detect = int (GPIO.input(LineFollowerH))
         print(left_detect)
