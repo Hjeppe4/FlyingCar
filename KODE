@@ -69,7 +69,7 @@ GPIO.setup(RIGHT_MOTOR_PWM2, GPIO.OUT)
 GPIO.setup(LEFT_MOTOR_PWM2, GPIO.OUT)
 print("test 3")
 # Initialize PWM for motor speed control
- wiringpi.softPwmWrite(LEFT_MOTOR_PWM,100)
+wiringpi.softPwmWrite(LEFT_MOTOR_PWM,100)
 right_pwm = GPIO.PWM(RIGHT_MOTOR_PWM, 100)
 left_pwm2 = GPIO.PWM(LEFT_MOTOR_PWM2, 100)
 right_pwm2 = GPIO.PWM(RIGHT_MOTOR_PWM2, 100)
