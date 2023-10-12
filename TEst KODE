@@ -21,7 +21,7 @@ RIGHT_MOTOR_IN1 = 17
 RIGHT_MOTOR_IN2 = 27
 RIGHT_MOTOR_PWM2 = 18
 LineFollowerV = 10
-LineFollowerH = 9
+LineFollowerH = 9   
 print("test 2")
 # Set GPIO mode and configure pins
 GPIO.setmode(GPIO.BCM)
@@ -104,8 +104,8 @@ print("test 9")
 try:
     while True:
         # Your line sensor logic here
-        left_detect = 1
-        right_detect = 1
+        left_detect = int(LineFollowerV)
+        right_detect = int(LineFollowerH)
         if left_detect == 1 and right_detect == 1:
             print("Go straight")
             forward()
