@@ -63,8 +63,8 @@ def backward(speed=50):
     GPIO.output(RIGHT_MOTOR_IN2, GPIO.HIGH)
     wiringpi.softPwmWrite(RIGHT_MOTOR_PWM, 0)
     wiringpi.softPwmWrite(LEFT_MOTOR_PWM2, 0)
-    wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, speed)
-    wiringpi.softPwmWrite(LEFT_MOTOR_PWM,speed)
+    wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, 0)
+    wiringpi.softPwmWrite(LEFT_MOTOR_PWM, 0)
 print("test 6")
 def turn_left(speed=50):
     GPIO.output(LEFT_MOTOR_IN1, GPIO.LOW)
@@ -106,7 +106,7 @@ try:
         print(right_detect)
         if left_detect == 1 and right_detect == 1:
             print("Go straight")
-            forward()
+            backward()
         elif left_detect == 1 and right_detect == 0:
             print("Turn left")
             turn_left()
