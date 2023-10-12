@@ -1,19 +1,16 @@
-import RPi.GPIO as GPIO
-import wiringpi as wiringpi
-import time
-wiringpi.wiringPiSetupGpio()
+from gpiozero import Servo
+from time import sleep
 
-light1 = 12
-light2 = 13
+servo = Servo(32)
 
-wiringpi.softPwmCreate(light1, 0, 100) 
-wiringpi.softPwmCreate(light2, 0, 100)
-print("test")
+try:
+	while True:
+    	servo.min()
+    	sleep(0.5)
+    	servo.mid()
+    	sleep(0.5)
+    	servo.max()
+    	sleep(0.5)
 
-wiringpi.softPwmWrite(light1, 100)
-wiringpi.softPwmWrite(light2, 100)
-print("test  2")
-time.sleep(3)
-wiringpi.softPwmWrite(light1, 0)
-wiringpi.softPwmWrite(light2, 0)
-print ("test 3 ")
+except KeyboardInterrupt:
+	print("Program stopped")
