@@ -93,6 +93,8 @@ def stop():
     right_pwm.ChangeDutyCycle(0)
     wiringpi.softPwmWrite(LEFT_MOTOR_PWM, 0)
     wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, 0)
+    wiringpi.softPwmWrite(RIGHT_MOTOR_PWM, 0)
+    wiringpi.softPwmWrite(LEFT_MOTOR_PWM2, 0)
 print("test 9")
 # Example usage
 try:
