@@ -12,7 +12,7 @@ p.start(0)               # Starts running PWM on the pin and sets it to 0
 # Move the servo back and forth
 p.ChangeDutyCycle(0)     # Changes the pulse width to 3 (so moves the servo)
 sleep(1)                 # Wait 1 second
-p.ChangeDutyCycle(3)    # Changes the pulse width to 12 (so moves the servo)
+p.ChangeDutyCycle(6)    # Changes the pulse width to 12 (so moves the servo)
 sleep(1)
 
 # Clean up everything
