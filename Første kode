@@ -125,6 +125,8 @@ GPIO.setup(hfor, GPIO.OUT)
 wiringpi.softPwmCreate(hforpwm, 0, 100) 
 GPIO.setup(hbag, GPIO.OUT)
 GPIO.setup(hbagpwm, GPIO.OUT)
+GPIO.setup(LineFollowerH, GPIO.OUT)
+GPIO.setup(LineFollowerV, GPIO.OUT)
 
 
 #venstre for dir1 = gpio23, board 16. pwm1 = gpio19 borad 35

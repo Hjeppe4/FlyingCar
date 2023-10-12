@@ -20,6 +20,8 @@ RIGHT_MOTOR_PWM = 12
 RIGHT_MOTOR_IN1 = 17
 RIGHT_MOTOR_IN2 = 27
 RIGHT_MOTOR_PWM2 = 18
+LineFollowerV = 10
+LineFollowerH = 9
 print("test 2")
 # Set GPIO mode and configure pins
 GPIO.setmode(GPIO.BCM)
