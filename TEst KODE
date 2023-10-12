@@ -23,7 +23,7 @@ RIGHT_MOTOR_PWM2 = 18
 LineFollowerV = 10
 LineFollowerH = 9  
 Lys1 = 21
-Lys2 = 20
+Lys2 = 16
 GPIO.setup(12,GPIO.OUT)  # Sets up pin 11 to an output (instead of an input)
 p = GPIO.PWM(12, 50)  
 GPIO.setup(13,GPIO.OUT)  # Sets up pin 11 to an output (instead of an input)
