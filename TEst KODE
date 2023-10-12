@@ -115,7 +115,7 @@ try:
             turn_right()
         else:
             print("Collision")
-            stop()
+            backward()
         sleep(0.1)
 except KeyboardInterrupt:
     pass
