@@ -5,6 +5,7 @@ import wiringpi as wiringpi
 
 print("test 2")
 wiringpi.wiringPiSetupGpio()
+from sshkeyboard import listen_keyboard
 
 print("test 2")
 
@@ -68,14 +69,14 @@ def forward(speed=100):
     wiringpi.softPwmWrite(LEFT_MOTOR_PWM,speed)
 print("test 5")
 def backward(speed=100):
-    GPIO.output(LEFT_MOTOR_IN1, GPIO.LOW)
+    GPIO.output(LEFT_MOTOR_IN1, GPIO.HIGH)
     GPIO.output(LEFT_MOTOR_IN2, GPIO.HIGH)
-    GPIO.output(RIGHT_MOTOR_IN1, GPIO.LOW)
-    GPIO.output(RIGHT_MOTOR_IN2, GPIO.HIGH)
-    wiringpi.softPwmWrite(RIGHT_MOTOR_PWM, 0)
-    wiringpi.softPwmWrite(LEFT_MOTOR_PWM2, 0)
-    wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, 0)
-    wiringpi.softPwmWrite(LEFT_MOTOR_PWM, 0)
+    GPIO.output(RIGHT_MOTOR_IN1, GPIO.HIGH)
+    GPIO.output(RIGHT_MOTOR_IN2, GPIO.LOW)
+    wiringpi.softPwmWrite(RIGHT_MOTOR_PWM, speed)
+    wiringpi.softPwmWrite(LEFT_MOTOR_PWM2, speed)
+    wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, speed)
+    wiringpi.softPwmWrite(LEFT_MOTOR_PWM, speed)
 print("test 6")
 def turn_left(speed=100):
     GPIO.output(LEFT_MOTOR_IN1, GPIO.LOW)
@@ -109,43 +110,22 @@ def stop():
 print("test 9")
 # Example usage
 run_once = 0
-try:
-    while True:
-        if run_once == 0:
-            p.ChangeDutyCycle(6)
-            GPIO.output(Lys1, GPIO.HIGH)
-            GPIO.output(Lys2, GPIO.HIGH)
-            sleep(1)                 # Wait 1 second
-            p.ChangeDutyCycle(10) 
-            
-            run_once = 1
-        
-        left_detect = int (GPIO.input(LineFollowerV))
-        right_detect = int (GPIO.input(LineFollowerH))
-        print(left_detect)
-        print(right_detect)
-        if left_detect == 1 and right_detect == 1:
-            print("Go straight")
-            forward()
-            p.ChangeDutyCycle(6)
-            p2.ChangeDutyCycle(12) 
-        elif left_detect == 1 and right_detect == 0:
-            print("Turn left")  
-            turn_left()
-        elif left_detect == 0 and right_detect == 1:
-            print("Turn right")
-            turn_right()
-        else:
-            print("Collision")
-            backward()
-        sleep(0.1)
-except KeyboardInterrupt:
-    p.ChangeDutyCycle(10)
-    p2.ChangeDutyCycle(7)
-    pass
+def press(key):
+    if key == "w":
+        forward()
+    if key == "s":
+        backward()
+    if key == "a":
+        turn_right()
+    if key == "d":
+        turn_left()
+    if key == "b":
+        p.ChangeDutyCycle(6)
+        time.sleep(2)
+        p.ChangeDutyCycle(10)
+
+
+while True:
+    listen_keyboard(on_press = press)
 
 # Clean up GPIO on program exit
-GPIO.cleanup()
-wiringpi.softPwmWrite(LEFT_MOTOR_PWM, 0)
-wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, 0)
-
