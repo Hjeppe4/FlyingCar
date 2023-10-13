@@ -61,8 +61,8 @@ print("test 4")
 def forward(speed=100):
     GPIO.output(LEFT_MOTOR_IN1, GPIO.LOW)
     GPIO.output(LEFT_MOTOR_IN2, GPIO.LOW)
-    GPIO.output(RIGHT_MOTOR_IN1, GPIO.LOW)
-    GPIO.output(RIGHT_MOTOR_IN2, GPIO.LOW)
+    GPIO.output(RIGHT_MOTOR_IN1, GPIO.HIGH)
+    GPIO.output(RIGHT_MOTOR_IN2, GPIO.HIGH)
     wiringpi.softPwmWrite(RIGHT_MOTOR_PWM, speed)
     wiringpi.softPwmWrite(LEFT_MOTOR_PWM2,speed)
     wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, speed)
@@ -71,8 +71,8 @@ print("test 5")
 def backward(speed=100):
     GPIO.output(LEFT_MOTOR_IN1, GPIO.HIGH)
     GPIO.output(LEFT_MOTOR_IN2, GPIO.HIGH)
-    GPIO.output(RIGHT_MOTOR_IN1, GPIO.HIGH)
-    GPIO.output(RIGHT_MOTOR_IN2, GPIO.HIGH)
+    GPIO.output(RIGHT_MOTOR_IN1, GPIO.LOW)
+    GPIO.output(RIGHT_MOTOR_IN2, GPIO.LOW)
     wiringpi.softPwmWrite(RIGHT_MOTOR_PWM, speed)
     wiringpi.softPwmWrite(LEFT_MOTOR_PWM2, speed)
     wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, speed)
@@ -126,7 +126,7 @@ def press(key):
         time.sleep(2)
         p.ChangeDutyCycle(10)
     if key == "m":
-        stop()
+        stop()b
 
 
 while True:
