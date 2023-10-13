@@ -83,9 +83,9 @@ def turn_left(speed=100):
     GPIO.output(LEFT_MOTOR_IN2, GPIO.LOW)
     GPIO.output(RIGHT_MOTOR_IN1, GPIO.HIGH)
     GPIO.output(RIGHT_MOTOR_IN2, GPIO.HIGH)
-    wiringpi.softPwmWrite(RIGHT_MOTOR_PWM, speed)
+    wiringpi.softPwmWrite(RIGHT_MOTOR_PWM, 40)
     wiringpi.softPwmWrite(LEFT_MOTOR_PWM2, 0)
-    wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, speed)
+    wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, 40)
     wiringpi.softPwmWrite(LEFT_MOTOR_PWM, speed)
 print("test 7")
 def turn_right(speed=100):
@@ -94,9 +94,9 @@ def turn_right(speed=100):
     GPIO.output(RIGHT_MOTOR_IN1, GPIO.HIGH)
     GPIO.output(RIGHT_MOTOR_IN2, GPIO.HIGH)
     wiringpi.softPwmWrite(RIGHT_MOTOR_PWM, 0)
-    wiringpi.softPwmWrite(LEFT_MOTOR_PWM2, speed)
+    wiringpi.softPwmWrite(LEFT_MOTOR_PWM2, 40)
     wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, speed)
-    wiringpi.softPwmWrite(LEFT_MOTOR_PWM,speed)
+    wiringpi.softPwmWrite(LEFT_MOTOR_PWM,40)
 print("test 8")
 def stop():
     GPIO.output(LEFT_MOTOR_IN1, GPIO.HIGH)
