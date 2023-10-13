@@ -109,7 +109,6 @@ def stop():
     wiringpi.softPwmWrite(LEFT_MOTOR_PWM2, 0)
 print("test 9")
 # Example usage
-run_once = 0
 def press(key):
     if key == "w":
         forward()
