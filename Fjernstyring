@@ -127,6 +127,8 @@ def press(key):
     if key == "d":
         turn_left()
     if key == "b":
+        GPIO.output(Lys1, GPIO.HIGH)
+        GPIO.output(Lys2, GPIO.HIGH)
         p.ChangeDutyCycle(10)
         time.sleep(2)
 
@@ -134,7 +136,9 @@ def press(key):
         time.sleep(2)
         p.ChangeDutyCycle(10)
     if key == "m":
-        stop()
+        stop() 
+        GPIO.output(Lys1, GPIO.LOW)
+        GPIO.output(Lys2, GPIO.LOW)
 
 
 while True:
