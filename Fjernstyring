@@ -126,7 +126,7 @@ def press(key):
         time.sleep(2)
         p.ChangeDutyCycle(10)
     if key == "m":
-        stop()b
+        stop()
 
 
 while True:
