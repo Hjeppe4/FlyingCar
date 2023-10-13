@@ -57,7 +57,7 @@ wiringpi.softPwmWrite(RIGHT_MOTOR_PWM2, 0)
 
 
 print("test 4")
-def forward(speed=90):
+def forward(speed=100):
     GPIO.output(LEFT_MOTOR_IN1, GPIO.LOW)
     GPIO.output(LEFT_MOTOR_IN2, GPIO.LOW)
     GPIO.output(RIGHT_MOTOR_IN1, GPIO.LOW)
